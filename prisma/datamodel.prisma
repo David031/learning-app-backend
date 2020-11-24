@@ -1,0 +1,41 @@
+type Idiom {
+  id: ID! @id
+  idiom: String!
+  description: String!
+  dynasty: Dynasty! @relation(link: INLINE)
+}
+type Dynasty {
+  id: ID! @id
+  code: String! @unique
+  dynastyName: String!
+  idioms: [Idiom!]!
+} 
+
+type User{
+   id: ID! @id
+   name: String!
+   email: String! @unique
+   records:[Record!]!
+}
+
+type Level{
+   id: ID! @id
+   code: Int! @unique
+   name: String!
+   idioms: [Idiom!]! @relation(link: INLINE)
+   dynasty: Dynasty! @relation(link: INLINE)
+   records:[Record!]!
+}
+
+type Record {
+  id: ID! @id
+  user: User!  @relation(link: INLINE)
+  level: Level! @relation(link: INLINE)
+  status: RecordStatus! 
+}
+
+enum RecordStatus{
+  Finish_All
+  Finish_Three
+  Finish_Two
+}

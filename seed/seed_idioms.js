@@ -3,7 +3,7 @@ const Papa = require("papaparse");
 const fs = require("fs");
 
 async function main() {
-  fs.readFile("./IdiomData.csv", "utf8", (err, data) => {
+  fs.readFile("./data/IdiomData.csv", "utf8", (err, data) => {
     if (err) {
       console.error(err);
       return;

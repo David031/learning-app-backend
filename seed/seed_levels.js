@@ -1,5 +1,5 @@
-const { prisma } = require("./prisma/generated/prisma-client");
-const shuffle = require("./utils/shuffle");
+const { prisma } = require("../prisma/generated/prisma-client");
+const shuffle = require("../utils/shuffle");
 
 async function main() {
   const dynasties = shuffle(await prisma.dynasties());

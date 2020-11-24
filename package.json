@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "reset": "npx prisma reset -f && npm run seed",
-    "seed": "node seed_idioms.js && node seed_idioms.js && node seed_levels.js",
+    "seed": "node ./seed/seed_idioms.js && node ./seed/seed_idioms.js && node ./seed/seed_levels.js",
     "deploy":"npx prisma deploy"
   },
   "keywords": [],

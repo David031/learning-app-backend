@@ -1,4 +1,4 @@
-const { prisma } = require("./prisma/generated/prisma-client");
+const { prisma } = require("../prisma/generated/prisma-client");
 const Papa = require("papaparse");
 const fs = require("fs");
 

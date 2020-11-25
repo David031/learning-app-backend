@@ -482,6 +482,7 @@ export interface UserWhereInput {
   email_not_starts_with?: Maybe<String>;
   email_ends_with?: Maybe<String>;
   email_not_ends_with?: Maybe<String>;
+  maxUnlockedLevel?: Maybe<LevelWhereInput>;
   records_every?: Maybe<RecordWhereInput>;
   records_some?: Maybe<RecordWhereInput>;
   records_none?: Maybe<RecordWhereInput>;
@@ -762,6 +763,12 @@ export interface UserCreateWithoutRecordsInput {
   id?: Maybe<ID_Input>;
   name: String;
   email: String;
+  maxUnlockedLevel: LevelCreateOneInput;
+}
+
+export interface LevelCreateOneInput {
+  create?: Maybe<LevelCreateInput>;
+  connect?: Maybe<LevelWhereUniqueInput>;
 }
 
 export interface LevelUpdateInput {
@@ -870,6 +877,27 @@ export interface UserUpdateOneRequiredWithoutRecordsInput {
 export interface UserUpdateWithoutRecordsDataInput {
   name?: Maybe<String>;
   email?: Maybe<String>;
+  maxUnlockedLevel?: Maybe<LevelUpdateOneRequiredInput>;
+}
+
+export interface LevelUpdateOneRequiredInput {
+  create?: Maybe<LevelCreateInput>;
+  update?: Maybe<LevelUpdateDataInput>;
+  upsert?: Maybe<LevelUpsertNestedInput>;
+  connect?: Maybe<LevelWhereUniqueInput>;
+}
+
+export interface LevelUpdateDataInput {
+  code?: Maybe<Int>;
+  name?: Maybe<String>;
+  idioms?: Maybe<IdiomUpdateManyInput>;
+  dynasty?: Maybe<DynastyUpdateOneRequiredInput>;
+  records?: Maybe<RecordUpdateManyWithoutLevelInput>;
+}
+
+export interface LevelUpsertNestedInput {
+  update: LevelUpdateDataInput;
+  create: LevelCreateInput;
 }
 
 export interface UserUpsertWithoutRecordsInput {
@@ -974,6 +1002,7 @@ export interface UserCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
   email: String;
+  maxUnlockedLevel: LevelCreateOneInput;
   records?: Maybe<RecordCreateManyWithoutUserInput>;
 }
 
@@ -991,6 +1020,7 @@ export interface RecordCreateWithoutUserInput {
 export interface UserUpdateInput {
   name?: Maybe<String>;
   email?: Maybe<String>;
+  maxUnlockedLevel?: Maybe<LevelUpdateOneRequiredInput>;
   records?: Maybe<RecordUpdateManyWithoutUserInput>;
 }
 
@@ -1437,6 +1467,7 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   email: () => Promise<String>;
+  maxUnlockedLevel: <T = LevelPromise>() => T;
   records: <T = FragmentableArray<Record>>(args?: {
     where?: RecordWhereInput;
     orderBy?: RecordOrderByInput;
@@ -1454,6 +1485,7 @@ export interface UserSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
+  maxUnlockedLevel: <T = LevelSubscription>() => T;
   records: <T = Promise<AsyncIterator<RecordSubscription>>>(args?: {
     where?: RecordWhereInput;
     orderBy?: RecordOrderByInput;
@@ -1471,6 +1503,7 @@ export interface UserNullablePromise
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   email: () => Promise<String>;
+  maxUnlockedLevel: <T = LevelPromise>() => T;
   records: <T = FragmentableArray<Record>>(args?: {
     where?: RecordWhereInput;
     orderBy?: RecordOrderByInput;

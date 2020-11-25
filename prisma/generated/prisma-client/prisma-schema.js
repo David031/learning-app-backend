@@ -480,6 +480,11 @@ input LevelCreateInput {
   records: RecordCreateManyWithoutLevelInput
 }
 
+input LevelCreateOneInput {
+  create: LevelCreateInput
+  connect: LevelWhereUniqueInput
+}
+
 input LevelCreateOneWithoutRecordsInput {
   create: LevelCreateWithoutRecordsInput
   connect: LevelWhereUniqueInput
@@ -531,6 +536,14 @@ input LevelSubscriptionWhereInput {
   NOT: [LevelSubscriptionWhereInput!]
 }
 
+input LevelUpdateDataInput {
+  code: Int
+  name: String
+  idioms: IdiomUpdateManyInput
+  dynasty: DynastyUpdateOneRequiredInput
+  records: RecordUpdateManyWithoutLevelInput
+}
+
 input LevelUpdateInput {
   code: Int
   name: String
@@ -542,6 +555,13 @@ input LevelUpdateInput {
 input LevelUpdateManyMutationInput {
   code: Int
   name: String
+}
+
+input LevelUpdateOneRequiredInput {
+  create: LevelCreateInput
+  update: LevelUpdateDataInput
+  upsert: LevelUpsertNestedInput
+  connect: LevelWhereUniqueInput
 }
 
 input LevelUpdateOneRequiredWithoutRecordsInput {
@@ -556,6 +576,11 @@ input LevelUpdateWithoutRecordsDataInput {
   name: String
   idioms: IdiomUpdateManyInput
   dynasty: DynastyUpdateOneRequiredInput
+}
+
+input LevelUpsertNestedInput {
+  update: LevelUpdateDataInput!
+  create: LevelCreateInput!
 }
 
 input LevelUpsertWithoutRecordsInput {
@@ -912,6 +937,7 @@ type User {
   id: ID!
   name: String!
   email: String!
+  maxUnlockedLevel: Level!
   records(where: RecordWhereInput, orderBy: RecordOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Record!]
 }
 
@@ -925,6 +951,7 @@ input UserCreateInput {
   id: ID
   name: String!
   email: String!
+  maxUnlockedLevel: LevelCreateOneInput!
   records: RecordCreateManyWithoutUserInput
 }
 
@@ -937,6 +964,7 @@ input UserCreateWithoutRecordsInput {
   id: ID
   name: String!
   email: String!
+  maxUnlockedLevel: LevelCreateOneInput!
 }
 
 type UserEdge {
@@ -980,6 +1008,7 @@ input UserSubscriptionWhereInput {
 input UserUpdateInput {
   name: String
   email: String
+  maxUnlockedLevel: LevelUpdateOneRequiredInput
   records: RecordUpdateManyWithoutUserInput
 }
 
@@ -998,6 +1027,7 @@ input UserUpdateOneRequiredWithoutRecordsInput {
 input UserUpdateWithoutRecordsDataInput {
   name: String
   email: String
+  maxUnlockedLevel: LevelUpdateOneRequiredInput
 }
 
 input UserUpsertWithoutRecordsInput {
@@ -1048,6 +1078,7 @@ input UserWhereInput {
   email_not_starts_with: String
   email_ends_with: String
   email_not_ends_with: String
+  maxUnlockedLevel: LevelWhereInput
   records_every: RecordWhereInput
   records_some: RecordWhereInput
   records_none: RecordWhereInput

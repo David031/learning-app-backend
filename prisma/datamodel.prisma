@@ -15,6 +15,7 @@ type User{
    id: ID! @id
    name: String!
    email: String! @unique
+   maxUnlockedLevel: Level! @relation(link: INLINE)
    records:[Record!]!
 }
 

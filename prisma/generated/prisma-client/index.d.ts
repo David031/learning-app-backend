@@ -273,7 +273,11 @@ export type DynastyOrderByInput =
   | "dynastyName_ASC"
   | "dynastyName_DESC";
 
-export type RecordStatus = "Finish_All" | "Finish_Three" | "Finish_Two";
+export type RecordStatus =
+  | "Finish_All"
+  | "Finish_Three"
+  | "Finish_Two"
+  | "Not_Finish";
 
 export type RecordOrderByInput =
   | "id_ASC"

@@ -800,6 +800,7 @@ enum RecordStatus {
   Finish_All
   Finish_Three
   Finish_Two
+  Not_Finish
 }
 
 type RecordSubscriptionPayload {
